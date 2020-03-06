@@ -1,0 +1,41 @@
+---
+sudo: required
+dist: bionic
+
+language: generic
+
+addons:
+  apt:
+    sources:
+    - sourceline: 'ppa:jonathonf/gcc-9.0'
+    packages:
+      - gcc-9
+      - build-essential
+      - bison
+      - flex
+      - libelf-dev
+      - fakeroot
+      - crash
+      - kexec-tools
+      - makedumpfile
+      - kernel-wedge
+      - libncurses5
+      - libncurses5-dev
+      - libelf-dev
+      - asciidoc
+      - binutils
+      - binutils-dev
+      - libudev-dev
+      - pciutils-dev
+      - liblz4-tool
+      - dos2unix
+      - python
+
+env:
+  jobs:
+    - ARCH=x86_64 DIST=debian PATCHES="ubuntu"
+    - ARCH=x86_64 DIST=debian PATCHES="ubuntu vfio"
+
+script:
+  - if [ -n "$TRAVIS_TAG" ]; then export VERSION=$( cut -d '-' -f 1 <<< "$TRAVIS_TAG" ) export RELEASEVER=$( cut -d '-' -f 2 <<< "$TRAVIS_TAG" ); echo "Setting versions via TravisCI Tag"; fi
+  - make
