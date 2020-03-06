@@ -38,4 +38,4 @@ env:
 
 script:
   - if [ -n "$TRAVIS_TAG" ]; then export VERSION=$( cut -d '-' -f 1 <<< "$TRAVIS_TAG" ) export RELEASEVER=$( cut -d '-' -f 2 <<< "$TRAVIS_TAG" ); echo "Setting versions via TravisCI Tag"; fi
-  - VERSION=$(VERSION) RELEASEVER=$(RELEASEVER) make
+  - VERSION=(VERSION RELEASEVER=$RELEASEVER make
