@@ -2,6 +2,7 @@ SHELL := /bin/sh
 
 RELEASEVER?=1
 VERSION?=5.4.24
+ARCH?=x86_64
 
 NPROCS:=1
 OS:=$(shell uname -s)
